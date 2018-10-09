@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: #23201c;
+    font-family: 'Source Serif Pro', serif;
+
+}
+
+body {
+    height: 100vh;
+    background: url("../img/code-background.jpg") fixed;
+    background-size: cover;
+}
+
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #23201cc2;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.top .content {
+    height: calc(100vh - 500px);
+    min-height: 150px;
+    align-items: center;
+    padding: 0 10px;
+}
+.top .right{
+    align-self: center;
+    width: 22px;
+}
+.bottom .content {
+    height:500px;
+    align-items: flex-end;
+}
+
+.top .left {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.description {
+    align-self: self-start;
+}
+
+.description h3 {
+    font-size: 16px;
+    color: #AE8ABE;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px #000000;
+    text-align: justify;
+    max-width: 600px;
+}
+
+.pic img {
+    display: block;
+}
+
+.call-me {
+    color: #AE8ABE;
+    letter-spacing: 2px;
+    text-orientation: mixed;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-decoration-color: #A8C023;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+::selection {
+    background: #A8C023;
+    color: #fff;
+}
+
+.name, .full-name {
+    font-weight: bold;
+    letter-spacing: 10px;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+.name {
+    display: flex;
+    font-size: 80px;
+}
+
+.first-name {
+    margin-right: 20px;
+}
+
+.name-border {
+    border-bottom: 3px solid #A8C023;
+}
+
+.quote {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #AE8ABE;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+.icons {
+    display: flex;
+    background-color: #23201ca6;
+}
+
+.icons a {
+    width: 35px;
+    text-align: center;
+    margin: 0 3px;
+    padding: 10px;
+    border-bottom: 2px solid #A8C023;
+    text-decoration: none;
+    color: #AE8ABE;
+    font-size: 30px;
+    line-height: 29px;
+}
+
+.icons a:hover {
+    color: #A8C023;
+    border-color: #AE8ABE;
+    -webkit-transition: color 500ms ease-out;
+    -moz-transition: color 500ms ease-out;
+    -o-transition: color 500ms ease-out;
+    transition: color 500ms ease-out;
+}
+
+.name-on-center {
+    display: none;
+    text-align: center;
+}
+
+.really {
+    display: none;
+    text-align: center;
+    color: #A8C023;
+}
+
+@media only screen and (max-width: 850px) {
+    .bottom .content {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .bottom .right {
+        position: absolute;
+    }
+
+    .bottom .left {
+        z-index: 2;
+    }
+
+    .call-me {
+        display: none;
+    }
+
+    .first-name {
+        margin-right: 10px;
+    }
+
+    .full-name {
+        font-size: 55px;
+    }
+
+    .name-on-left {
+        display: none;
+    }
+
+    .name-on-center {
+        display: block;
+    }
+
+    .top .left {
+        margin: auto;
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    .call-me {
+        display: none;
+    }
+
+    .pic img, .bottom .content{
+        height: 400px;
+    }
+
+    .top .content {
+        height: calc(100vh - 400px);
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .full-name {
+        font-size: 40px;
+    }
+
+    .icons a {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .full-name {
+        font-size: 30px;
+    }
+    .icons a {
+        margin: 0;
+        padding: 5px 3px;
+    }
+}
+@media only screen and (max-width: 325px) {
+    .description{
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 750px) {
+    .pic img, .bottom .content{
+        height: 300px;
+    }
+
+    .top .content {
+        height: calc(100vh - 300px);
+    }
+    .name, .full-name{
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .pic img, .bottom .content{
+        height: 150px;
+    }
+
+    .top .content {
+        height: calc(100vh - 150px);
+    }
+
+}
+
+@media only screen and (max-height: 335px) {
+    .description{
+        display: none;
+    }
+    .pic img, .bottom .content{
+        height: 100px;
+    }
+
+    .top .content {
+        height: calc(100vh - 100px);
+    }
+}
+
+@media only screen  and (max-width: 285px),  only screen and (max-height: 260px){
+    .container{
+        display: none;
+    }
+    .really{
+        display: block;
+    }
+}
