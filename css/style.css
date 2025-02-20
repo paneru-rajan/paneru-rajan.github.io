@@ -27,6 +27,7 @@ body:before {
     background-size: cover;
 }
 
+/* For larger screens, the overlay is fixed; on mobile, we let it scroll */
 .overlay {
     position: fixed;
     width: 100vw;
@@ -61,6 +62,13 @@ body:before {
 .bottom .content {
     height: 500px;
     align-items: flex-end;
+}
+
+@media only screen and (max-width: 480px) {
+    .bottom .content {
+        height: auto;
+        flex-direction: column;
+    }
 }
 
 .top .left {
@@ -314,5 +322,13 @@ body:before {
 
     .really {
         display: block;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .overlay {
+        position: relative;
+        height: auto;
     }
 }
