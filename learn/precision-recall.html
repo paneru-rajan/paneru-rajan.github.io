@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = (l !== 'dataLayer' ? '&l=' + l : '');
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-T2FHP55H');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="keywords"
+          content="Rajan Paneru, Lead AI/ML Engineer, Python, AI, LLM, Semantic Search, MLOps, FastAPI, Django, Docker, AWS">
+
+    <meta name="description"
+          content="Rajan Paneru - Lead AI/ML Engineer with over a decade of experience building intelligent web systems. Specializes in practical machine learning tools like semantic search and custom LLMs.">
+    <meta name="author" content="Rajan Paneru">
+
+    <meta itemprop="name" content="Rajan Paneru - Lead AI/ML Engineer">
+    <meta itemprop="description"
+          content="Lead AI/ML Engineer specializing in practical machine learning, semantic search, and custom LLMs.">
+    <meta itemprop="image" content="https://www.gravatar.com/avatar/74946eabd27b49d6efc623e4a454bd1f?s=512">
+
+    <meta property="og:title" content="Rajan Paneru - Lead AI/ML Engineer">
+    <meta property="og:description"
+          content="Lead AI/ML Engineer specializing in practical machine learning, semantic search, and custom LLMs.">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/74946eabd27b49d6efc623e4a454bd1f?s=512">
+    <meta property="og:url" content="https://rajanpaneru.com.np">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rajan Paneru - Lead AI/ML Engineer">
+    <meta name="twitter:description"
+          content="Lead AI/ML Engineer specializing in practical machine learning, semantic search, and custom LLMs.">
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/74946eabd27b49d6efc623e4a454bd1f?s=512">
+
+    <link rel="canonical" href="https://rajanpaneru.com.np">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Rajan Paneru | Lead AI/ML Engineer | Python | LLMs</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/precision_recall.css">
+    <meta charset="UTF-8">
+    <script src="../js/p5.min.js"></script>
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2FHP55H" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="main overlay">
+    <div class="container background">
+
+        <header class="top">
+            <nav class="main-nav">
+            </nav>
+        </header>
+
+        <h1>Interactive Precision & Recall</h1>
+        <p class="subtitle">
+            The left half has all true <strong>Relevant</strong> items <span class="dot solid"></span> and the right has
+            all
+            <strong>Irrelevant</strong> items <span class="dot hollow"></span>. The circle shows what the model <strong>predicted</strong>
+            as relevant.
+        </p>
+        <div id="canvas-container"></div>
+
+        <div class="bottom-panels">
+            <div id="controls-container">
+                <div class="control-group">
+                    <label data-tooltip="The total number of items in the dataset.">Total Elements
+                        <span>200</span></label>
+                    <input type="range" id="total-slider" min="20" max="300" value="100" step="10">
+                </div>
+                <hr style="border-color: var(--border-color); width: 100%; margin: -0.5rem 0;">
+                <div class="control-group">
+                    <label data-tooltip="Relevant items (solid) correctly predicted as relevant (in the circle).">True
+                        Positives
+                        <span>40</span></label>
+                    <input type="range" id="tp-slider" min="0" max="300" value="40" step="1">
+                </div>
+                <div class="control-group">
+                    <label data-tooltip="Irrelevant items (hollow) incorrectly predicted as relevant (in the circle).">False
+                        Positives <span>20</span></label>
+                    <input type="range" id="fp-slider" min="0" max="300" value="20" step="1">
+                </div>
+                <div class="control-group">
+                    <label data-tooltip="Relevant items (solid) that the model failed to predict (outside the circle).">False
+                        Negatives <span>20</span></label>
+                    <input type="range" id="fn-slider" min="0" max="300" value="20" step="1">
+                </div>
+            </div>
+
+            <div id="metrics-container">
+                <div class="metric">
+                    <div class="metric-title"
+                         data-tooltip="Of all items the model predicted as relevant (all items in the circle), what fraction was actually relevant (solid)?">
+                        Precision
+                    </div>
+                    <div class="metric-details">
+                        <div class="metric-formula">
+                            <span class="numerator">TP</span>
+                            <span class="denominator">(TP+FP)</span>
+                        </div>
+                        <span class="metric-equals">=</span>
+                        <div class="metric-formula-numbers">
+                            <span class="numerator" id="precision-numerator">0</span>
+                            <span class="denominator" id="precision-denominator">(0 + 0)</span>
+                        </div>
+                        <span class="metric-equals">=</span>
+                        <span class="metric-result" id="precision-result">0.00</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-title"
+                         data-tooltip="Of all the items that were actually relevant (all solid items), what fraction did the model find?">
+                        Recall
+                    </div>
+                    <div class="metric-details">
+                        <div class="metric-formula">
+                            <span class="numerator">TP</span>
+                            <span class="denominator">(TP+FN)</span>
+                        </div>
+                        <span class="metric-equals">=</span>
+                        <div class="metric-formula-numbers">
+                            <span class="numerator" id="recall-numerator">0</span>
+                            <span class="denominator" id="recall-denominator">(0 + 0)</span>
+                        </div>
+                        <span class="metric-equals">=</span>
+                        <span class="metric-result" id="recall-result">0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" class="wiki-link">
+            Learn more on Wikipedia
+        </a>
+    </div>
+</div>
+</body>
+
+
+<script>
+  const sketch = (p) => {
+    const sliders = {};
+    const formulaSpans = {};
+    // FIX: A new object to hold the span elements for the slider values
+    const labelValueSpans = {};
+    let dots = { tp: [], fp: [], fn: [], tn: [] };
+
+    const canvasSize = { w: 900, h: 500 };
+    const circle = { x: canvasSize.w / 2, y: canvasSize.h / 2, r: 160 };
+    const relevantRect = { x: 0, y: 0, w: canvasSize.w / 2, h: canvasSize.h };
+
+    p.setup = () => {
+      p.createCanvas(canvasSize.w, canvasSize.h).parent('canvas-container');
+
+      const sliderIds = ['total', 'tp', 'fp', 'fn'];
+      // CHANGED: Select both the slider and its corresponding value span during setup
+      sliderIds.forEach(id => {
+        sliders[id] = p.select(`#${id}-slider`);
+        // This selects the <span> inside the <label> within the slider's parent div
+        labelValueSpans[id] = sliders[id].parent().querySelector('label span');
+      });
+
+      const formulaIds = ['precision-numerator', 'precision-denominator', 'precision-result', 'recall-numerator', 'recall-denominator', 'recall-result'];
+      formulaIds.forEach(id => formulaSpans[id] = p.select(`#${id}`));
+
+      for (const s in sliders) {
+        sliders[s].input(() => {
+          updateSliderConstraints();
+          updateDotArrays();
+        });
+      }
+
+      updateSliderConstraints();
+      updateDotArrays();
+    };
+
+    p.draw = () => {
+      p.background(p.color(getComputedStyle(document.documentElement).getPropertyValue('--bg-color')));
+      updateUI();
+      drawVisualization();
+      drawDots();
+      drawLabels();
+    };
+
+    const updateUI = () => {
+      const vals = {};
+      for (const id in sliders) { vals[id] = sliders[id].value(); }
+      vals.tn = vals.total - vals.tp - vals.fp - vals.fn;
+
+      // FIX: Efficiently update only the number in the span, preventing blinking
+      for (const id in labelValueSpans) {
+        if (labelValueSpans[id]) {
+          labelValueSpans[id].innerHTML = vals[id];
+        }
+      }
+
+      const precision = (vals.tp + vals.fp > 0) ? vals.tp / (vals.tp + vals.fp) : 0;
+      const recall = (vals.tp + vals.fn > 0) ? vals.tp / (vals.tp + vals.fn) : 0;
+
+      formulaSpans['precision-numerator'].html(vals.tp);
+      formulaSpans['precision-denominator'].html(`(${vals.tp} + ${vals.fp})`);
+      formulaSpans['precision-result'].html(precision.toFixed(2));
+
+      formulaSpans['recall-numerator'].html(vals.tp);
+      formulaSpans['recall-denominator'].html(`(${vals.tp} + ${vals.fn})`);
+      formulaSpans['recall-result'].html(recall.toFixed(2));
+    };
+
+    const updateSliderConstraints = () => {
+      const total = sliders.total.value();
+      let tp = sliders.tp.value();
+      let fp = sliders.fp.value();
+      let fn = sliders.fn.value();
+
+      if (tp + fp + fn > total) {
+        const over = (tp + fp + fn) - total;
+        if (tp > fp && tp > fn) sliders.tp.value(tp - over);
+        else if (fp > fn) sliders.fp.value(fp - over);
+        else sliders.fn.value(fn - over);
+      }
+
+      sliders.tp.elt.max = total - sliders.fp.value() - sliders.fn.value();
+      sliders.fp.elt.max = total - sliders.tp.value() - sliders.fn.value();
+      sliders.fn.elt.max = total - sliders.tp.value() - sliders.fp.value();
+    };
+
+    const updateDotArrays = () => {
+      const counts = {
+        tp: sliders.tp.value(),
+        fp: sliders.fp.value(),
+        fn: sliders.fn.value(),
+      };
+      counts.tn = sliders.total.value() - (counts.tp + counts.fp + counts.fn);
+
+      dots.tp = generateDots(counts.tp, isTP);
+      dots.fp = generateDots(counts.fp, isFP);
+      dots.fn = generateDots(counts.fn, isFN);
+      dots.tn = generateDots(counts.tn, isTN);
+    };
+
+    const generateDots = (count, conditionFunc) => {
+      const arr = [];
+      for (let i = 0; i < count; i++) {
+        let pos;
+        do {
+          pos = p.createVector(p.random(p.width), p.random(p.height));
+        } while (!conditionFunc(pos));
+        arr.push(pos);
+      }
+      return arr;
+    };
+
+    const drawVisualization = () => {
+      p.noStroke();
+      p.fill(p.color(getComputedStyle(document.documentElement).getPropertyValue('--relevant-color')));
+      p.rect(relevantRect.x, relevantRect.y, relevantRect.w, relevantRect.h);
+
+      p.fill(p.color(getComputedStyle(document.documentElement).getPropertyValue('--retrieved-color')));
+      p.ellipse(circle.x, circle.y, circle.r * 2);
+
+      p.blendMode(p.ADD);
+      p.fill(p.color(getComputedStyle(document.documentElement).getPropertyValue('--relevant-color')));
+      p.arc(circle.x, circle.y, circle.r * 2, circle.r * 2, p.HALF_PI, p.PI + p.HALF_PI, p.CHORD);
+      p.blendMode(p.BLEND);
+
+      p.noFill();
+      p.stroke(p.color(getComputedStyle(document.documentElement).getPropertyValue('--border-color')));
+      p.strokeWeight(2);
+      p.rect(relevantRect.x, relevantRect.y, relevantRect.w, relevantRect.h);
+      p.ellipse(circle.x, circle.y, circle.r * 2);
+    };
+
+    const drawDots = () => {
+      const dotRelevantColor = p.color(getComputedStyle(document.documentElement).getPropertyValue('--dot-relevant-color'));
+      const dotIrrelevantColor = p.color(getComputedStyle(document.documentElement).getPropertyValue('--dot-irrelevant-color'));
+
+      p.noStroke();
+      p.fill(dotRelevantColor);
+      dots.tp.forEach(d => p.ellipse(d.x, d.y, 10, 10));
+      dots.fn.forEach(d => p.ellipse(d.x, d.y, 10, 10));
+
+      p.noFill();
+      p.stroke(dotIrrelevantColor);
+      p.strokeWeight(2);
+      dots.fp.forEach(d => p.ellipse(d.x, d.y, 10, 10));
+      dots.tn.forEach(d => p.ellipse(d.x, d.y, 10, 10));
+    };
+
+    const drawLabels = () => {
+      p.noStroke();
+      p.fill(p.color(getComputedStyle(document.documentElement).getPropertyValue('--text-color')));
+      p.drawingContext.shadowOffsetX = 1;
+      p.drawingContext.shadowOffsetY = 1;
+      p.drawingContext.shadowBlur = 3;
+      p.drawingContext.shadowColor = 'black';
+
+      p.textAlign(p.CENTER, p.CENTER);
+      p.textSize(16);
+      p.text('True Positives', circle.x - circle.r / 2, circle.y);
+      p.text('False Positives', circle.x + circle.r / 2, circle.y);
+      p.text('False Negatives', relevantRect.w / 2, relevantRect.y + 40);
+      p.text('True Negatives', canvasSize.w - relevantRect.w / 2, relevantRect.y + 40);
+
+      p.drawingContext.shadowOffsetX = 0;
+      p.drawingContext.shadowOffsetY = 0;
+      p.drawingContext.shadowBlur = 0;
+    };
+
+    const isInCircle = (pos) => p.dist(pos.x, pos.y, circle.x, circle.y) < circle.r;
+    const isInRelevantRect = (pos) => pos.x < relevantRect.w;
+
+    const isTP = (pos) => isInCircle(pos) && isInRelevantRect(pos);
+    const isFP = (pos) => isInCircle(pos) && !isInRelevantRect(pos);
+    const isFN = (pos) => !isInCircle(pos) && isInRelevantRect(pos);
+    const isTN = (pos) => !isInCircle(pos) && !isInRelevantRect(pos);
+  };
+
+  new p5(sketch);
+</script>
+</body>
+</html>

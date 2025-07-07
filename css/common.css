@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #23201c;
+    --text-color: #ffffff;
+    --primary-accent: #AE8ABE;
+    --secondary-accent: #A8C023;
+    --surface-color: rgba(35, 32, 28, 0.8);
+    --border-color: #444;
+
+    --relevant-color: rgba(3, 218, 197, 0.15);
+    --retrieved-color: rgba(255, 127, 127, 0.2);
+
+    --dot-relevant-color: #03dac5;
+    --dot-irrelevant-color: #cf6679;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-family: 'Source Serif Pro', serif;
+    min-height: 100vh;
+}
+
+body:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: url("../img/code-background.jpg") no-repeat left center;
+    background-size: cover;
+}
+
+.overlay {
+    /*position: fixed;*/
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    background-color: rgba(35, 32, 28, 0.8);
+}
+
+::selection {
+    background: var(--secondary-accent);
+    color: var(--text-color);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 10px;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    display: inline-block;
+    position: relative;
+}
+
+.main-nav a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 10px 15px;
+    display: block;
+    transition: color 500ms ease-out;
+}
+
+.main-nav a:hover, .dropdown:hover .dropdown-toggle {
+    color: var(--secondary-accent);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--surface-color);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li {
+    margin-left: 4px;
+    margin-right: 4px;
+    display: block;
+}
+
+.dropdown-content li:not(:first-child) {
+    border-top: 1px solid var(--border-color);
+}
+
+.dropdown-content a {
+    padding: 12px;
+    font-weight: normal;
+}
+
+@media only screen and (max-width: 850px), only screen and (max-height: 800px) {
+    .main-nav {
+        display: none;
+    }
+}

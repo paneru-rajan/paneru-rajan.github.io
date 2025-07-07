@@ -1,33 +1,5 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+@import 'common.css';
 
-/* Global resets and box-sizing */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    color: #ffffff;
-    background-color: #23201c;
-    font-family: 'Source Serif Pro', serif;
-    min-height: 100vh;
-}
-
-body:before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background: url("../img/code-background.jpg") no-repeat left center;
-    background-size: cover;
-}
-
-/* For larger screens, the overlay is fixed; on mobile, we let it scroll */
 .overlay {
     position: fixed;
     width: 100vw;
@@ -49,26 +21,21 @@ body:before {
 }
 
 .top .content {
-    height: calc(100vh - 500px);
+    height: calc(100vh - 500px - 70px);
     min-height: 150px;
     align-items: center;
 }
 
 .top .right {
     align-self: center;
-    width: 22px;
+    width: auto;
+    display: flex;
+    align-items: center;
 }
 
 .bottom .content {
     height: 500px;
     align-items: flex-end;
-}
-
-@media only screen and (max-width: 480px) {
-    .bottom .content {
-        height: auto;
-        flex-direction: column;
-    }
 }
 
 .top .left {
@@ -83,7 +50,7 @@ body:before {
 
 .description h3 {
     font-size: 16px;
-    color: #AE8ABE;
+    color: var(--primary-accent);
     font-weight: normal;
     letter-spacing: 1px;
     text-shadow: 1px 1px 1px #000;
@@ -98,17 +65,12 @@ body:before {
 }
 
 .call-me {
-    color: #AE8ABE;
+    color: var(--primary-accent);
     letter-spacing: 2px;
     font-weight: bold;
     writing-mode: vertical-rl;
     text-decoration: none;
     text-shadow: 1px 1px 1px #000;
-}
-
-::selection {
-    background: #A8C023;
-    color: #fff;
 }
 
 .name, .full-name {
@@ -127,13 +89,13 @@ body:before {
 }
 
 .name-border {
-    border-bottom: 3px solid #A8C023;
+    border-bottom: 3px solid var(--secondary-accent);
 }
 
 .quote {
     font-size: 18px;
     margin-top: 10px;
-    color: #AE8ABE;
+    color: var(--primary-accent);
     font-weight: bold;
     letter-spacing: 2.5px;
     text-shadow: 2px 2px 2px #000;
@@ -148,16 +110,16 @@ body:before {
     text-align: center;
     margin: 0 3px;
     padding: 10px;
-    border-bottom: 2px solid #A8C023;
+    border-bottom: 2px solid var(--secondary-accent);
     text-decoration: none;
-    color: #AE8ABE;
+    color: var(--primary-accent);
     font-size: 30px;
     line-height: 29px;
 }
 
 .icons a:hover {
-    color: #A8C023;
-    border-color: #AE8ABE;
+    color: var(--secondary-accent);
+    border-color: var(--primary-accent);
     transition: color 500ms ease-out;
 }
 
@@ -169,26 +131,7 @@ body:before {
 .really {
     display: none;
     text-align: center;
-    color: #A8C023;
-}
-
-/* Education Section */
-.education {
-    padding: 20px;
-    background-color: rgba(35, 32, 28, 0.85);
-    text-align: center;
-}
-
-.education-content h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #A8C023;
-}
-
-.education-content p {
-    font-size: 16px;
-    color: #AE8ABE;
-    margin: 0;
+    color: var(--secondary-accent);
 }
 
 /* Responsive adjustments */
@@ -236,8 +179,7 @@ body:before {
         display: none;
     }
 
-    .pic img,
-    .bottom .content {
+    .pic img, .bottom .content {
         height: 400px;
     }
 
@@ -262,7 +204,7 @@ body:before {
     }
 
     .icons a {
-        margin: 0;
+        margin: 0 3px;
         padding: 5px 3px;
     }
 }
@@ -274,8 +216,7 @@ body:before {
 }
 
 @media only screen and (max-height: 750px) {
-    .pic img,
-    .bottom .content {
+    .pic img, .bottom .content {
         height: 300px;
     }
 
@@ -283,15 +224,13 @@ body:before {
         height: calc(100vh - 300px);
     }
 
-    .name,
-    .full-name {
+    .name, .full-name {
         font-size: 40px;
     }
 }
 
 @media only screen and (max-height: 600px) {
-    .pic img,
-    .bottom .content {
+    .pic img, .bottom .content {
         height: 150px;
     }
 
@@ -305,8 +244,7 @@ body:before {
         display: none;
     }
 
-    .pic img,
-    .bottom .content {
+    .pic img, .bottom .content {
         height: 100px;
     }
 
@@ -324,7 +262,6 @@ body:before {
         display: block;
     }
 }
-
 
 @media only screen and (max-width: 480px) {
     .overlay {

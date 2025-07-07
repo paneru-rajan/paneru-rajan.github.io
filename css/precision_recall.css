@@ -1,0 +1,232 @@
+@import 'common.css';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+#canvas-container {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    -webkit-box-shadow: inset 0 0 0 4px var(--secondary-accent);
+    -moz-box-shadow: inset 0 0 0 4px var(--secondary-accent);
+    box-shadow: inset 0 0 0 4px var(--secondary-accent);
+}
+
+.bottom-panels {
+    display: flex;
+    gap: 2rem;
+    width: 900px;
+    max-width: 100%;
+}
+
+#controls-container, #metrics-container {
+    background-color: var(--surface-color);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#controls-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#metrics-container {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.control-group {
+    position: relative;
+}
+
+.control-group label {
+    color: var(--primary-accent);
+    margin-bottom: 0.5rem;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    cursor: help;
+}
+
+.control-group label span {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    outline: none;
+    transition: opacity .2s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--secondary-accent);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background .2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #cde730; /* Brighter version of secondary accent */
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    cursor: help;
+}
+
+.metric-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.metric-formula-numbers, .metric-formula {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metric-formula-numbers {
+    min-width: 120px;
+}
+
+.denominator {
+    border-top: 1px solid var(--primary-accent);
+    padding-top: 0.25rem;
+    color: var(--primary-accent);
+}
+
+.numerator {
+    color: var(--text-color);
+}
+
+.metric-equals {
+    font-size: 1.5rem;
+    color: var(--primary-accent);
+}
+
+.metric-result {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--secondary-accent);
+}
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 10;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--primary-accent);
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+.subtitle strong {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.subtitle .dot {
+    display: inline-block;
+    width: .8em;
+    height: .8em;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 0.1em;
+    position: relative;
+    top: -0.1em;
+}
+
+.subtitle .solid {
+    background-color: var(--dot-relevant-color);
+    border: 2px solid var(--dot-relevant-color);
+}
+
+.subtitle .hollow {
+    border: 2px solid var(--dot-irrelevant-color);
+}
+
+.wiki-link {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    color: var(--primary-accent);
+    font-size: 0.8em;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.wiki-link:hover {
+    color: var(--secondary-accent);
+}
