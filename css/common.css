@@ -40,12 +40,6 @@ body:before {
     background-size: cover;
 }
 
-.overlay {
-    /*position: fixed;*/
-    /*width: 100vw;*/
-    /*height: 100vh;*/
-    background-color: rgba(35, 32, 28, 0.8);
-}
 
 ::selection {
     background: var(--secondary-accent);
